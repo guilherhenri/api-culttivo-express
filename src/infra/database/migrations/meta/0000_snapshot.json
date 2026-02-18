@@ -1,0 +1,104 @@
+{
+  "id": "0abc7539-a1bc-4d8e-9ef3-2f66516f8b98",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.credit_requests": {
+      "name": "credit_requests",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "producerName": {
+          "name": "producerName",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "producerDocument": {
+          "name": "producerDocument",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "farmArea": {
+          "name": "farmArea",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "annualRevenue": {
+          "name": "annualRevenue",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "requestedAmount": {
+          "name": "requestedAmount",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rejectionReason": {
+          "name": "rejectionReason",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.status": {
+      "name": "status",
+      "schema": "public",
+      "values": [
+        "PENDING",
+        "APPROVED",
+        "REJECTED"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
