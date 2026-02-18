@@ -39,7 +39,7 @@ describe('Get Credit Request (Use-case)', () => {
   })
 
   it('should not be able to get a credit request that does not exist', async () => {
-    expect(() => 
+    await expect(() => 
       sut.execute({
         id: 'invalid-credit-request-id'
       })

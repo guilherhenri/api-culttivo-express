@@ -1,6 +1,6 @@
 import request from 'supertest'
  
-import { app } from '../../server'
+import { app } from '../../app'
 import { db } from '../../database/drizzle-client'
 import { creditRequests } from '../../database/schema'
 import { randomUUID } from 'node:crypto'

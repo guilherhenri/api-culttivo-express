@@ -1,13 +1,6 @@
-import express from 'express'
-import { router } from './http/routes'
-
 import './workers/bullmq-worker'
 
-export const app = express()
-
-app.use(express.json())
-
-app.use(router)
+import { app } from "./app"
 
 app.listen(3333, (error) => {
   if (error) {
