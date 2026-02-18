@@ -1,6 +1,8 @@
 import { GenericContainer } from 'testcontainers'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { migrate } from 'drizzle-orm/node-postgres/migrator'
+import { Pool } from 'pg'
+import { pool } from '../src/infra/database/drizzle-client'
 
 const REDIS_IMAGE = 'redis:8.2.4-alpine'
 const POSTGRES_IMAGE = 'postgres:18-alpine'
@@ -28,10 +30,16 @@ export async function setup() {
 
   const databaseURL = `postgres://test:test@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/test`
   
-  const migrationClient = drizzle(databaseURL)
+  const migrationPool = new Pool({
+    connectionString: databaseURL,
+  })
+  const migrationClient = drizzle(migrationPool)
   await migrate(migrationClient, { migrationsFolder: './src/infra/database/migrations' })
+  
+  await migrationPool.end()
 
   return async () => {
+    await pool.end()
     await Promise.all([redisContainer.stop(), postgresContainer.stop()])
   }
 }
